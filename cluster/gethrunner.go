@@ -16,8 +16,8 @@ type gethRunner struct {
 func NewGethRunner(gethpath *GethPath) *gethRunner {
 	return &gethRunner{
 		gethpath:    gethpath,
-		nextp2pport: 8000,
-		nextrpcport: 9000,
+		nextp2pport: 8800,
+		nextrpcport: 9900,
 	}
 }
 
