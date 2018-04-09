@@ -41,8 +41,6 @@ func sigHash(header *types.Header) (hash common.Hash) {
 		header.Bloom,
 		header.Difficulty,
 		header.Number,
-		header.GasLimit,
-		header.GasUsed,
 		header.Time,
 		header.Extra[:len(header.Extra)-65], // Yes, this will panic if extra is too short
 		header.MixDigest,
@@ -143,7 +141,6 @@ func TransactionInPOA(tx *types.Transaction) TransactionMarshaling {
 
 type ReceiptMarshaling struct {
 	Succeed bool            `json:"succeed"`
-	GasUsed uint64          `json:"gas_used"`
 	Logs    []LogMarshaling `json:"logs"`
 }
 
@@ -154,7 +151,6 @@ func ReceiptInPOA(r *types.Receipt) ReceiptMarshaling {
 	}
 	return ReceiptMarshaling{
 		Succeed: r.Status == types.ReceiptStatusSuccessful,
-		GasUsed: r.CumulativeGasUsed.Uint64(),
 		Logs:    logs,
 	}
 }

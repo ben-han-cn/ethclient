@@ -16,7 +16,6 @@ import (
 func MakeGenesis(blockInterval time.Duration, signers []common.Address, prefund map[common.Address]*big.Int) *core.Genesis {
 	genesis := &core.Genesis{
 		Timestamp:  uint64(time.Now().Unix()),
-		GasLimit:   4700000,
 		Difficulty: big.NewInt(1048576),
 		Alloc:      make(core.GenesisAlloc),
 		Config:     &params.ChainConfig{},

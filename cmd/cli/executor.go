@@ -272,10 +272,8 @@ data:      %x
 	} else {
 		receiptMarshal := cluster.ReceiptInPOA(r)
 		fmt.Printf(`succeed:   %v
-gas_used:  %v
 logs:      %v
 `, receiptMarshal.Succeed,
-			receiptMarshal.GasUsed,
 			receiptMarshal.Logs)
 	}
 }

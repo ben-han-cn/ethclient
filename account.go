@@ -7,7 +7,6 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
@@ -62,19 +61,7 @@ func (c *Client) AccountNextNonce(address common.Address) (uint64, error) {
 }
 
 func (c *Client) Transfer(from *Account, destAccount common.Address, nonce uint64, value *big.Int) error {
-	var err error
-	gasPrice, err := c.SuggestGasPrice(context.Background())
-	if err != nil {
-		return err
-	}
-
-	msg := ethereum.CallMsg{From: from.Address(), Value: value}
-	gasLimit, err := c.EstimateGas(context.Background(), msg)
-	if err != nil {
-		return err
-	}
-
-	rawTx := types.NewTransaction(nonce, destAccount, value, gasLimit, gasPrice, nil)
+	rawTx := types.NewTransaction(nonce, destAccount, value, nil)
 	signedTx, err := from.SignTransaction(types.HomesteadSigner{}, rawTx)
 	if err != nil {
 		return err

@@ -19,7 +19,7 @@ func (c *Client) OnlineCall(contract common.Address, from *Account, input []byte
 		return err
 	}
 
-	rawTx := types.NewTransaction(nonce, contract, big.NewInt(0), big.NewInt(0), big.NewInt(0), input)
+	rawTx := types.NewTransaction(nonce, contract, big.NewInt(0), input)
 	signedTx, err := from.SignTransaction(types.HomesteadSigner{}, rawTx)
 	if err != nil {
 		return err
